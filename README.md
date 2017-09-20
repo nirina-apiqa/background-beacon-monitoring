@@ -8,11 +8,11 @@ The altbeacon library jar is provided in `libs/android` directory.
 
 Installing the plugin is as simple as adding the plugin to cordova using the plugin add command.
 
-`cordova plugin add https://github.com/apiqa/Background-Beacon-Monitoring.git`
+`cordova plugin add https://github.com/nirina-apiqa/background-beacon-monitoring.git`
 
 To install the plugin when using the Ionic framework the following command will add the plugin and save it to package.json.
 
-`ionic plugin add https://github.com/apiqa/Background-Beacon-Monitoring.git`
+`ionic plugin add https://github.com/nirina-apiqa/background-beacon-monitoring.git`
 
 
 Currently the altbeacon jar file is not linked when the plugin is installed due to a clash if the cordova-plugin-ibeacon is installed as this also uses the altbeacon library for Android (currently working on fixing this). If this is only being used then uncomment the following line in plugin.xml, fix for this is being worked on.

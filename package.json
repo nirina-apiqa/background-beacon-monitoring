@@ -1,6 +1,6 @@
 {
   "name": "background-beacon-monitoring",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Proximity Beacon background monitoring for android (supporting iBeacons)",
   "cordova": {
     "id": "mg.apiqa.library.backgroundbeacons",
