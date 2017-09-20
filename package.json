@@ -1,0 +1,25 @@
+{
+  "name": "background-beacon-monitoring",
+  "version": "0.0.1",
+  "description": "Proximity Beacon background monitoring for android (supporting iBeacons)",
+  "cordova": {
+    "id": "mg.apiqa.library.backgroundbeacons",
+    "platforms": [
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nirina-apiqa/background-beacon-monitoring.git"
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "author": "nirina",
+  "license": "Apache 2.0",
+  "bugs": {
+    "url": "https://github.com/nirina-apiqa/background-beacon-monitoring/issues"
+  },
+  "homepage": "https://github.com/nirina-apiqa/background-beacon-monitoring#readme"
+}
