@@ -58,6 +58,7 @@ public class BeaconTrackingService {
 
       } catch (Exception e) {
 
+          Log.d("mg.apiqa.library.backgroundbeacons region tracking errors", e.getMessage());
       }
     }
 
@@ -93,7 +94,7 @@ public class BeaconTrackingService {
         conn.disconnect();
 
       } catch (Exception e) {
-
+          Log.d("mg.apiqa.library.backgroundbeacons region tracking errors", e.getMessage());
       }
     }
 
@@ -129,6 +130,8 @@ public class BeaconTrackingService {
         conn.disconnect();
 
       } catch (Exception e) {
+
+        Log.d("mg.apiqa.library.backgroundbeacons beacon tracking errors", e.getMessage());
 
       }
     }
