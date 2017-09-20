@@ -1,0 +1,109 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/nodejs', '/usr/bin/npm', 'publish' ]
+2 info using npm@3.10.10
+3 info using node@v6.9.4
+4 verbose publish [ '.' ]
+5 silly cache add args [ '.', null ]
+6 verbose cache add spec .
+7 silly cache add parsed spec Result {
+7 silly cache add   raw: '.',
+7 silly cache add   scope: null,
+7 silly cache add   escapedName: null,
+7 silly cache add   name: null,
+7 silly cache add   rawSpec: '.',
+7 silly cache add   spec: '/home/webdeveloper/CordovaProjects/background-beacon-monitoring',
+7 silly cache add   type: 'directory' }
+8 verbose addLocalDirectory /home/webdeveloper/.npm/background-beacon-monitoring/0.0.2/package.tgz not in flight; packing
+9 verbose correctMkdir /home/webdeveloper/.npm correctMkdir not in flight; initializing
+10 info lifecycle background-beacon-monitoring@0.0.2~prepublish: background-beacon-monitoring@0.0.2
+11 silly lifecycle background-beacon-monitoring@0.0.2~prepublish: no script for prepublish, continuing
+12 verbose tar pack [ '/home/webdeveloper/.npm/background-beacon-monitoring/0.0.2/package.tgz',
+12 verbose tar pack   '/home/webdeveloper/CordovaProjects/background-beacon-monitoring' ]
+13 verbose tarball /home/webdeveloper/.npm/background-beacon-monitoring/0.0.2/package.tgz
+14 verbose folder /home/webdeveloper/CordovaProjects/background-beacon-monitoring
+15 verbose addLocalTarball adding from inside cache /home/webdeveloper/.npm/background-beacon-monitoring/0.0.2/package.tgz
+16 verbose correctMkdir /home/webdeveloper/.npm correctMkdir not in flight; initializing
+17 silly cache afterAdd background-beacon-monitoring@0.0.2
+18 verbose afterAdd /home/webdeveloper/.npm/background-beacon-monitoring/0.0.2/package/package.json not in flight; writing
+19 verbose correctMkdir /home/webdeveloper/.npm correctMkdir not in flight; initializing
+20 verbose afterAdd /home/webdeveloper/.npm/background-beacon-monitoring/0.0.2/package/package.json written
+21 silly publish { name: 'background-beacon-monitoring',
+21 silly publish   version: '0.0.2',
+21 silly publish   description: 'Proximity Beacon background monitoring for android (supporting iBeacons)',
+21 silly publish   cordova:
+21 silly publish    { id: 'mg.apiqa.library.backgroundbeacons',
+21 silly publish      platforms: [ 'android' ] },
+21 silly publish   repository:
+21 silly publish    { type: 'git',
+21 silly publish      url: 'git+https://github.com/nirina-apiqa/background-beacon-monitoring.git' },
+21 silly publish   keywords: [ 'ecosystem:cordova', 'cordova-android' ],
+21 silly publish   author: { name: 'nirina' },
+21 silly publish   license: 'Apache 2.0',
+21 silly publish   bugs: { url: 'https://github.com/nirina-apiqa/background-beacon-monitoring/issues' },
+21 silly publish   homepage: 'https://github.com/nirina-apiqa/background-beacon-monitoring#readme',
+21 silly publish   readme: '## Background Beacon Monitoring\n\nCordova plugin allowing background beacon monitoring and ranging on Android. Uses the altbeacon library for providing the API to interact with beacons.\n\nThe altbeacon library jar is provided in `libs/android` directory.\n\n## Installation\n\nInstalling the plugin is as simple as adding the plugin to cordova using the plugin add command.\n\n`cordova plugin add https://github.com/nirina-apiqa/background-beacon-monitoring.git`\n\nTo install the plugin when using the Ionic framework the following command will add the plugin and save it to package.json.\n\n`ionic plugin add https://github.com/nirina-apiqa/background-beacon-monitoring.git`\n\n\nCurrently the altbeacon jar file is not linked when the plugin is installed due to a clash if the cordova-plugin-ibeacon is installed as this also uses the altbeacon library for Android (currently working on fixing this). If this is only being used then uncomment the following line in plugin.xml, fix for this is being worked on.\n\n`<!-- <source-file src="libs/android/altbeacon.jar" target-dir="libs" framework="true" /> -->`\n\n## Usage\n\nOnce the plugin is added it is available for use as `BackgroundBeaconMonitoring`\n\nIn order to access the location information and details of the beacons detected the plugin requires either of `ACCESS_COARSE_LOCATION` and `ACCESS_FINE_LOCATION`. The app requests both of these permissions from the user through the `BackgroundBeaconMonitoring.requestPermissions()` method.\n\nAfter the user has given permission to access their location information the service can be started using the `BackgroundBeaconMonitoring.startService()` method.\n\n## API Reference\n\n#### requestPermissions()\n\n`BackgroundBeaconMonitoring.requestPermissions(successCallback, errorCallback)`\n\nRequests the permissions needed to access the users location and therefore the beacon information. The success and error callbacks are optional.\n\n| Parameter | Description |\n| --- | --- |\n| successCallback | [Optional] Callback function to run when the method returns successfully |\n| errorCallback | [Optional] Callback function to run when the method returns an error, the function can accept a parameter to hold the message returned from the native layer so any errors encountered eg. \'PERMISSION DENIED\' can be dealt with in the calling application appropriately |\n\n#### startService()\n\n`BackgroundBeaconMonitoring.startService(device_id, monitoring_api_url, ranging_api_url, sendMovementData, successCallback, errorCallback)`\n\nStarts the background service and sets the location and access details for the API.\n\n| Parameter | Description |\n| --- | --- |\n| device_id | The device id of the user mobile device. For consistency with requests sent within the app this is generated using `$cordovaDevice.getUUID()` in ionic/cordova |\n| monitoring_api_url | The URL fetched after background entering or exiting region event` |\n| ranging_api_url | The URL fetched after background ranging event |\n| sendMovementData | Whether to actually send the interactions with the beacons or not |\n| successCallback | Callback function to run when the method returns successfully |\n| errorCallback | Callback function to run when the method returns an error |\n\n\n#### startMonitoringRegion()\n\n`BackgroundBeaconMonitoring.startMonitoringRegion(identifier, uuid, major, minor, successCallback, errorCallback)`\n\nStarts monitoring the region specified by the uuid, major and minor and labels it with the unique identifier.\n\n| Parameter | Description |\n| --- | --- |\n| identifier | The unique identifier/name of the region to start monitoring |\n| uuid | The uuid of the region to monitor |\n| major | The major id number of the region to monitor - can be null so monitors all beacons for the uuid |\n| minor | The minor id number of the region to monitor - can be null and will scan for all beacons with uuid and major if major is specified, If major is null then this value is ignored |\n| successCallback | Callback function to run when the method returns successfully |\n| errorCallback | callback function to run when the method returns an error |\n\n#### stopMonitoringRegion()\n\n`BackgroundBeaconMonitoring.stopMonitoringRegion(identifier, successCallback, errorCallback)`\n\nStop monitoring the region specified by identifier, this is the same unique identifier used in the `startMonitoringRegion()` method.\n\n| Parameter | Description |\n| --- | --- |\n| identifier | The unique identifier/name of the region to stop monitoring, this is the same one as used to start monitoring |\n| successCallback | Callback function to run when the method returns successfully |\n| errorCallback | Callback function to run when the method returns an error |\n\n#### startRangingRegion()\n\n`BackgroundBeaconMonitoring.startRangingRegion(identifier, uuid, major, minor, successCallback, errorCallback)`\n\nStarts ranging the region specified by the uuid, major and minor and labels it with the unique identifier. The unique identifier can be the same as one used with associated uuid/major/minor in `startMonitoringRegion()` to range the region as well.\n\n| Parameter | Description |\n| --- | --- |\n| identifier | The unique identifier/name of the region to start ranging |\n| uuid | The uuid of the region to range |\n| major | The major id number of the region to range - can be null so monitors all beacons for the uuid |\n| minor | The minor id number of the region to range - can be null and will scan for all beacons with uuid and major if major is specified, If major is null then this value is ignored |\n| successCallback | Callback function to run when the method returns successfully |\n| errorCallback | callback function to run when the method returns an error |\n\n#### stopRangingRegion()\n\n`BackgroundBeaconMonitoring.stopRangingRegion(identifier, successCallback, errorCallback)`\n\nStop ranging the region specified by identifier, this is the same unique identifier used in the `startRangingRegion()` method.\n\n| Parameter | Description |\n| --- | --- |\n| identifier | The unique identifier/name of the region to stop ranging, this is the same one as used to start monitoring |\n| successCallback | Callback function to run when the method returns successfully |\n| errorCallback | Callback function to run when the method returns an error |\n\n#### setMovementPreference()\n\n`BackgroundBeaconMonitoring.setMovementPreference(preference, successCallback, errorCallback)`\n\nChanges the movement preference which controls whether the service sends interactions with the beacons, allows the user of the application to control the privacy of their movements.\n\n| Parameter | Description |\n| --- | --- |\n| preference | True/False Boolean Parameter to change whether the service sends to the API |\n| successCallback | Callback function to run when the method returns successfully |\n| errorCallback | Callback function to run when the method returns an error |\n\n## Contributors\n\nContributions welcome by pull request.\n\n## License\n\nApache License v2.0\n',
+21 silly publish   readmeFilename: 'README.md',
+21 silly publish   gitHead: 'd2c5fdcd50843ce23f319d3905caaafaf20b697d',
+21 silly publish   _id: 'background-beacon-monitoring@0.0.2',
+21 silly publish   scripts: {},
+21 silly publish   _shasum: '920018887ec1af7f0ab14f2879cba40b903dca46',
+21 silly publish   _from: '.' }
+22 verbose getPublishConfig undefined
+23 silly mapToRegistry name background-beacon-monitoring
+24 silly mapToRegistry using default registry
+25 silly mapToRegistry registry https://registry.npmjs.org/
+26 silly mapToRegistry data Result {
+26 silly mapToRegistry   raw: 'background-beacon-monitoring',
+26 silly mapToRegistry   scope: null,
+26 silly mapToRegistry   escapedName: 'background-beacon-monitoring',
+26 silly mapToRegistry   name: 'background-beacon-monitoring',
+26 silly mapToRegistry   rawSpec: '',
+26 silly mapToRegistry   spec: 'latest',
+26 silly mapToRegistry   type: 'tag' }
+27 silly mapToRegistry uri https://registry.npmjs.org/background-beacon-monitoring
+28 verbose publish registryBase https://registry.npmjs.org/
+29 silly publish uploading /home/webdeveloper/.npm/background-beacon-monitoring/0.0.2/package.tgz
+30 verbose request uri https://registry.npmjs.org/background-beacon-monitoring
+31 verbose request sending authorization for write operation
+32 info attempt registry request try #1 at 18:35:49
+33 verbose request using bearer token for auth
+34 verbose request id d5c2e67dee13ed71
+35 http request PUT https://registry.npmjs.org/background-beacon-monitoring
+36 http 403 https://registry.npmjs.org/background-beacon-monitoring
+37 verbose headers { 'content-type': 'application/json',
+37 verbose headers   'cache-control': 'max-age=300',
+37 verbose headers   'content-length': '91',
+37 verbose headers   'accept-ranges': 'bytes',
+37 verbose headers   date: 'Wed, 20 Sep 2017 15:35:55 GMT',
+37 verbose headers   via: '1.1 varnish',
+37 verbose headers   connection: 'keep-alive',
+37 verbose headers   'x-served-by': 'cache-lhr6346-LHR',
+37 verbose headers   'x-cache': 'MISS',
+37 verbose headers   'x-cache-hits': '0',
+37 verbose headers   'x-timer': 'S1505921751.954569,VS0,VE4907',
+37 verbose headers   vary: 'Accept-Encoding, Accept' }
+38 verbose request invalidating /home/webdeveloper/.npm/registry.npmjs.org/background-beacon-monitoring on PUT
+39 error publish Failed PUT 403
+40 verbose stack Error: You cannot publish over the previously published version 0.0.2. : background-beacon-monitoring
+40 verbose stack     at makeError (/usr/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:302:12)
+40 verbose stack     at CachingRegistryClient.<anonymous> (/usr/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:290:14)
+40 verbose stack     at Request._callback (/usr/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:210:14)
+40 verbose stack     at Request.self.callback (/usr/lib/node_modules/npm/node_modules/request/request.js:187:22)
+40 verbose stack     at emitTwo (events.js:106:13)
+40 verbose stack     at Request.emit (events.js:191:7)
+40 verbose stack     at Request.<anonymous> (/usr/lib/node_modules/npm/node_modules/request/request.js:1048:10)
+40 verbose stack     at emitOne (events.js:96:13)
+40 verbose stack     at Request.emit (events.js:188:7)
+40 verbose stack     at IncomingMessage.<anonymous> (/usr/lib/node_modules/npm/node_modules/request/request.js:969:12)
+41 verbose statusCode 403
+42 verbose pkgid background-beacon-monitoring
+43 verbose cwd /home/webdeveloper/CordovaProjects/background-beacon-monitoring
+44 error Linux 3.13.0-107-generic
+45 error argv "/usr/bin/nodejs" "/usr/bin/npm" "publish"
+46 error node v6.9.4
+47 error npm  v3.10.10
+48 error code E403
+49 error You cannot publish over the previously published version 0.0.2. : background-beacon-monitoring
+50 error If you need help, you may report this error at:
+50 error     <https://github.com/npm/npm/issues>
+51 verbose exit [ 1, true ]
