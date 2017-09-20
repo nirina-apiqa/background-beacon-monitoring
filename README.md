@@ -42,7 +42,7 @@ Requests the permissions needed to access the users location and therefore the b
 
 #### startService()
 
-`BackgroundBeaconMonitoring.startService(device_id, monitoring_api_url, ranging_api_url, api_url, sendMovementData, successCallback, errorCallback)`
+`BackgroundBeaconMonitoring.startService(device_id, monitoring_api_url, ranging_api_url, sendMovementData, successCallback, errorCallback)`
 
 Starts the background service and sets the location and access details for the API.
 
